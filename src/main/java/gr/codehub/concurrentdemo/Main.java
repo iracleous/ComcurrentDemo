@@ -2,7 +2,7 @@ package gr.codehub.concurrentdemo;
 
 public class Main {
 	private static int meter;
-	public static void main(String []args) {
+	public static void main(String []args) throws Exception{
 
 		Account accountA = new Account();
 		accountA.setOwner("Ercan");
@@ -29,6 +29,8 @@ public class Main {
 		t2.start();
 		
 		 
+		t1.join();
+		t2.join();
 		
 	}
 }

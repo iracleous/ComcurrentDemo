@@ -8,7 +8,7 @@ import java.util.concurrent.Future;
 
 public class ApplicationMain {
 	
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args)   {
 		
 		ExecutorService executor1 = Executors.newFixedThreadPool(10);
 		List<Future<Account>> futures = new ArrayList<>();
@@ -19,7 +19,14 @@ public class ApplicationMain {
 		}
 		
 		for (Future<Account> faccount:futures) {	
-			Account account = faccount.get();
+			Account account = null;
+			try {
+			 account = faccount.get();
+			}
+			catch(Exception e) {
+				System.out.println("future exception occured");
+				continue;
+			}
 			System.out.println(account.getOwner() + "  " + account.getBalance());
 		}
 		
